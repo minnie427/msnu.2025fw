@@ -1,95 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&family=Montserrat&family=Pixelify+Sans:wght@400;500;600;700&family=Tilt+Neon&display=swap" rel="stylesheet">
-       
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <script type="module" src="../three.js" defer></script>
-        
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&family=Montserrat&family=Pixelify+Sans:wght@400;500;600;700&family=Tilt+Neon&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>MONTSENU 2025</title>
+    <style></style>
+</head>
 
-        <title>MONTSENU 2025 FW</title>
+<body>
+<header>
+    <div id="header-section"></div>
+</header>
 
-        <!-- Favicon -->
-        <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
-        <link rel="manifest" href="../favicon/site.webmanifest">
+<!--
+Original landing content commented out by request
+<div class="sfw">
+   <br><br><br><br><br>
+   <img src="img/logo.png" width="30vw">
+   <h5><br>ONTIMESHOW <br>2025 FW</h5>
+   <br><br><br><br><br><br><br><br>
+   <h4>MSNU 04 LOOKBOOK</h4>
+   <a href="pages/lookbook.html"><img src="img/1.jpg" width="40vw"></a>
+   <br><br><br><br><br><br><br><br><br>
+   <h4>BRAND INFORMATION</h4>
+   <a href="pages/info.html"><img src="img/b1.jpg" width="40vw"></a>
+   <br><br><br><br><br><br><br><br><br>
+   <h4>MSNU 04 LINE SHEET</h4>
+   <a href="pages/linesheet.html"><img src="img/ls1.jpg" width="40vw"></a>
+   <br><br><br><br><br><br><br><br>
+</div>
+-->
 
-        <style>
-            body {
-                background-color: var(--col-05);
-                background-image: cover;
-            }
-        </style>
-    </head>
+<!-- New 2x2 tilted image grid -->
+<main class="landing" aria-label="Landing image links">
+  <div class="brand-header">
+    <div class="tagline"></div>
+    <img class="brand-logo" src="img/whitemontsenu.png" alt="MONTSENU logo">
+    <div class="subheading">Tranoï Tokyo<br>3–4 September 2025 <br> D24 MEN</div>
+  </div>
+  <div class="tiles">
+    <!-- 1. Brand Book -->
+    <a class="tile t1" href="pages/info.html">
+      <img src="img/brandbook.png" alt="Brand Book">
+      <span class="caption">(brand&nbsp;book)</span>
+    </a>
+    <!-- 2. Line Sheet -->
+    <a class="tile t2" href="pages/linesheet.html">
+      <img src="img/linesheet.png" alt="Line Sheet">
+      <span class="caption">(line&nbsp;sheet)</span>
+    </a>
+    <!-- 3. Website -->
+    <a class="tile t3" href="https://montsenu.com" target="_blank" rel="noopener noreferrer">
+      <img src="img/website.png" alt="Website">
+      <span class="caption">(website)</span>
+    </a>
+    <!-- 4. Instagram -->
+    <a class="tile t4" href="https://www.instagram.com/montsenu.kr/" target="_blank" rel="noopener noreferrer">
+      <img src="img/instagram.png" alt="Instagram">
+      <span class="caption">(instagram)</span>
+    </a>
+  </div>
+  <div class="footer-note"></div>
+</main>
 
-    <body>
-        <header>
-            <div id="header-section">
-               
-                <!-- <img src="../img/musicnote.png" id="musicPlay" width="35" height="33">
-                <audio id="bgm" src="../audio/main.mp3" autoplay loop></audio> -->
-                
-            </div>
-            <!-- <h1><img src="../img/minnie7.png" id="name" width="400px"></h1> -->
-        </header>
-       
-     
-        <div class="sfw" > 
-           <br><br><br><br><br>
-           <img src="img/logo.png" width="30vw">
-            <h5>
-              
-                <br>ONTIMESHOW <br>2025 FW 
-            </h5>
-
-<br><br><br><br><br><br><br><br>
-            <h4>
-                MSNU 04 LOOKBOOK
-            </h4>
-            <a href="pages/lookbook.html" >
-                <img src="img/1.jpg" width="40vw">
-            </a>
-            
-            <br><br><br><br><br><br><br><br><br>
-            <h4>
-               BRAND INFORMATION
-            </h4>
-            <a href="pages/info.html" >
-                <img src="img/b1.jpg" width="40vw">
-            </a>
-            
-            <br><br><br><br><br><br><br><br><br>
-            <h4>
-                MSNU 04 LINE SHEET
-            </h4>
-            <a href="pages/linesheet.html" >
-                <img src="img/ls1.jpg" width="40vw">
-            </a>
-            <br><br><br> <br><br><br><br><br><br>
-
-        </div>
-    
-        
-
- 
-        
-
-
-        
-        
+<!-- background handled via CSS; shader removed by request -->
 
 <footer class="footer">
     <div class="footer__container container">
         Copyright ©2025 MONTSENU. All rights reserved.
     </div>
 </footer>
- 
+
+<!-- shader removed -->
 
 </body>
-
 </html>
-

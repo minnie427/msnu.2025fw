@@ -27,9 +27,16 @@ body {
     margin: 0;
     font-family: 'Poppins', sans-serif; 
     width: 100%;
-    height: 100vh;
+    height: 100vh; /* fallback */
     overflow-x: hidden;
     /* cursor: none;  */
+    color: rgba(255,255,255,0.82);
+    background-color: #0d0d0d;
+    background-image: url('img/blackgrungy.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
   .sfw::-webkit-scrollbar {
@@ -47,9 +54,10 @@ body {
 }
 
 .sfw img {
-  width: 80vw; /* 80% of the viewport width */
+  width: 90vw; /* 80% of the viewport width */
   max-width: 100%; /* Prevents it from exceeding its container */
   height: auto; /* Maintains the aspect ratio */
+  margin-bottom: 3px;
 }
  
   
@@ -198,6 +206,124 @@ iframe {
   z-index: 5;
   position: absolute;
 }
+
+/* Landing collage-style tiles */
+.landing {
+  position: relative;
+  min-height: 100vh;   /* fallback */
+  min-height: 100svh;  /* mobile safe viewport */
+  min-height: 100dvh;  /* dynamic viewport */
+  display: grid;
+  place-items: center;
+  z-index: 1; /* above background canvas */
+  padding: clamp(24px, 6vw, 64px);
+  padding-bottom: max(clamp(24px, 6vw, 64px), env(safe-area-inset-bottom));
+}
+
+/* Header text + logo area */
+.brand-header {
+  width: min(92vw, 960px);
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 8px;
+  margin: 0 auto clamp(10px, 3vw, 16px);
+}
+
+.tagline, .footer-note {
+  font-family: var(--font-roboto);
+  font-weight: 400;
+  font-size: clamp(14px, 1.6vw, 13px);
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+
+.brand-logo {
+  width: min(360px, 60vw);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 2px 10px rgba(0,0,0,0.4));
+}
+
+/* Subheading below the logo */
+.subheading {
+  font-family: var(--font-roboto);
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.4;
+  font-size: clamp(20px, 2.5vw, 22px);
+  color: rgba(198, 198, 198, 0.704);
+  letter-spacing: 0.03em;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, min(38vw, 420px));
+  grid-auto-rows: min(38vw, 420px);
+  gap: clamp(12px, 4vw, 28px);
+}
+
+.tile {
+  --rot: 0deg;
+  position: relative;
+  display: block;
+  background: #0f0f0f;
+  border: 0.1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.45), 0 2px 10px rgba(0,0,0,0.35);
+  transform: rotate(var(--rot));
+  transition: transform 220ms ease, filter 220ms ease, box-shadow 220ms ease;
+  cursor: pointer;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+
+.tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(20%) contrast(1.08) brightness(0.88);
+  transition: transform 220ms ease, filter 220ms ease;
+}
+
+.tile:hover {
+  transform: rotate(var(--rot)) translateY(-4px) scale(1.02);
+  box-shadow: 0 28px 60px rgba(0,0,0,0.55), 0 4px 16px rgba(0,0,0,0.4);
+}
+
+.tile:hover img { filter: grayscale(10%) contrast(1.1) brightness(0.95); }
+
+.tile .caption {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -1.8rem;
+  color: rgba(255,255,255,0.8);
+  font-family: var(--font-josefin);
+  font-size: clamp(10px, 1.8vw, 14px);
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+.t1 { --rot: -7deg; }
+.t2 { --rot: 8deg; }
+.t3 { --rot: -9deg; }
+.t4 { --rot: 4deg; }
+
+@media (max-width: 800px) {
+  .tiles {
+    grid-template-columns: min(88vw, 520px);
+    grid-auto-rows: min(88vw, 520px);
+    gap: clamp(18px, 6vw, 28px);
+  }
+  .tile .caption { bottom: -1.2rem; }
+}
+
+.footer-note { margin-top: clamp(16px, 4vw, 24px); }
 
 
 /* iframe {
@@ -415,7 +541,7 @@ h4 {
 }
 
 h5 {
-  color: var(--col-01);
+  color: var(--col-05);
   font-size: 2rem;
   text-align: center;
   margin-bottom: 0.5rem;
@@ -640,3 +766,13 @@ svg {
   height: auto; /* Maintains the aspect ratio */
 }
 
+
+#shaderCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* keep it behind */
+  display: block;
+}
