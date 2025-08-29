@@ -286,7 +286,7 @@ iframe {
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: grayscale(20%) contrast(1.08) brightness(0.88);
+  filter: grayscale(50%) contrast(1.08) brightness(0.88);
   transition: transform 220ms ease, filter 220ms ease;
 }
 
@@ -295,7 +295,7 @@ iframe {
   box-shadow: 0 28px 60px rgba(0,0,0,0.55), 0 4px 16px rgba(0,0,0,0.4);
 }
 
-.tile:hover img { filter: grayscale(10%) contrast(1.1) brightness(0.95); }
+.tile:hover img { filter: grayscale(0%) contrast(1.1) brightness(0.95); }
 
 .tile .caption {
   position: absolute;
@@ -324,6 +324,24 @@ iframe {
 }
 
 .footer-note { margin-top: clamp(16px, 4vw, 24px); }
+
+/* Improve background quality on mobile: avoid fixed + use tiling scale */
+@media (max-width: 1024px) {
+  body {
+    /* Mobile/tablet: keep top-centered and tile to avoid gaps */
+    background-image: url('img/blackgrungy.png');
+    background-repeat: repeat;
+    background-position: top center;
+    background-size: 900px auto; /* tuned for tablets/large phones */
+    background-attachment: scroll; /* mobile renders fixed poorly */
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    background-size: 640px auto; /* smaller width for phones, still centered */
+  }
+}
 
 
 /* iframe {
