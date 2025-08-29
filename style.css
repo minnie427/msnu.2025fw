@@ -256,7 +256,7 @@ iframe {
   color: rgba(198, 198, 198, 0.704);
   letter-spacing: 0.03em;
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 100px;
 }
 
 .tiles {
@@ -323,7 +323,9 @@ iframe {
   .tile .caption { bottom: -1.2rem; }
 }
 
-.footer-note { margin-top: clamp(16px, 4vw, 24px); }
+.footer-note { 
+  margin-top: clamp(100px, 4vw, 24px); 
+}
 
 /* Improve background quality on mobile: avoid fixed + use tiling scale */
 @media (max-width: 1024px) {
