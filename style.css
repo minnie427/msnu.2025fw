@@ -259,14 +259,23 @@ iframe {
   margin-bottom: 100px;
 }
 
+
+
 .tiles {
-  display: grid;
-  grid-template-columns: repeat(2, min(38vw, 420px));
-  grid-auto-rows: min(38vw, 420px);
-  gap: clamp(12px, 4vw, 28px);
+  --g: clamp(12px, 4vw, 28px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--g);
+  justify-content: center; /* center rows on desktop */
+  width: 100%;
+  margin-inline: auto;
+  justify-self: stretch; /* ensure full-width inside grid container */
 }
 
 .tile {
+  /* Desktop default: aim for 3 per row, square tiles */
+  flex: 0 1 calc((100% - 2 * var(--g)) / 3 - 2px); /* small fudge to avoid wrap from rounding */
+  aspect-ratio: 1 / 1;
   --rot: 0deg;
   position: relative;
   display: block;
@@ -278,6 +287,7 @@ iframe {
   cursor: pointer;
   text-decoration: none;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 
@@ -286,7 +296,7 @@ iframe {
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: grayscale(50%) contrast(1.08) brightness(0.88);
+  filter: grayscale(30%) contrast(1.08) brightness(1.0);
   transition: transform 220ms ease, filter 220ms ease;
 }
 
@@ -295,7 +305,18 @@ iframe {
   box-shadow: 0 28px 60px rgba(0,0,0,0.55), 0 4px 16px rgba(0,0,0,0.4);
 }
 
-.tile:hover img { filter: grayscale(0%) contrast(1.1) brightness(0.95); }
+.tile:hover img { filter: grayscale(0%) contrast(1.08) brightness(1.12); }
+
+/* Mobile scroll-triggered hover substitute */
+@media (hover: none) and (pointer: coarse) {
+  body.scrolled .tile {
+    transform: rotate(var(--rot)) translateY(-4px) scale(1.02);
+    box-shadow: 0 28px 60px rgba(0,0,0,0.55), 0 4px 16px rgba(0,0,0,0.4);
+  }
+  body.scrolled .tile img {
+    filter: grayscale(0%) contrast(1.1) brightness(0.95);
+  }
+}
 
 .tile .caption {
   position: absolute;
@@ -313,13 +334,19 @@ iframe {
 .t2 { --rot: 8deg; }
 .t3 { --rot: -9deg; }
 .t4 { --rot: 4deg; }
+.t5 { --rot: -5deg; }
+
+/* Desktop (≥1025px): force max 3 per row by capping container */
+@media (min-width: 1025px) {
+  .tile { flex: 1 1 calc((100% - 2 * var(--g)) / 3 - 2px); max-width: 360px; }
+  .tiles { max-width: calc(3 * 360px + 2 * var(--g) - 2px); }
+}
+
+
 
 @media (max-width: 800px) {
-  .tiles {
-    grid-template-columns: min(88vw, 520px);
-    grid-auto-rows: min(88vw, 520px);
-    gap: clamp(18px, 6vw, 28px);
-  }
+  .tiles { max-width: 90vw; gap: clamp(18px, 60vw, 28px); justify-content: center; margin-inline: auto; }
+  .tile { flex: 0 0 90vw; }
   .tile .caption { bottom: -1.2rem; }
 }
 

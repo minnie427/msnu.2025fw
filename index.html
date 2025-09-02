@@ -5,7 +5,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&family=Montserrat&family=Pixelify+Sans:wght@400;500;600;700&family=Tilt+Neon&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css?v=13">
     <title>MONTSENU 2025</title>
     <style></style>
 </head>
@@ -42,23 +42,28 @@ Original landing content commented out by request
     <div class="subheading">Tranoï Tokyo<br>3–4 September 2025 <br> D24 MEN</div>
   </div>
   <div class="tiles">
-    <!-- 1. Brand Book -->
-    <a class="tile t1" href="pages/info.html">
+    <!-- 1. Magazine -->
+    <a class="tile t1" href="pages/magazine.html">
+      <img src="img/magazine.png" alt="Magazine">
+      <span class="caption">(magazine)</span>
+    </a>
+    <!-- 2. Brand Book -->
+    <a class="tile t2" href="pages/info.html">
       <img src="img/brandbook.png" alt="Brand Book">
       <span class="caption">(brand&nbsp;book)</span>
     </a>
-    <!-- 2. Line Sheet -->
-    <a class="tile t2" href="https://docs.google.com/spreadsheets/d/1p3E2jzWpdiAV-L_VXXc3NtfiE9TwGYNGmTLyshHj2c0/edit?gid=1604952631#gid=1604952631" target="_blank" rel="noopener noreferrer">
+    <!-- 3. Line Sheet -->
+    <a class="tile t3" href="https://docs.google.com/spreadsheets/d/1p3E2jzWpdiAV-L_VXXc3NtfiE9TwGYNGmTLyshHj2c0/edit?gid=1604952631#gid=1604952631" target="_blank" rel="noopener noreferrer">
       <img src="img/linesheet.png" alt="Line Sheet">
       <span class="caption">(line&nbsp;sheet)</span>
     </a>
-    <!-- 3. Website -->
-    <a class="tile t3" href="https://montsenu.com" target="_blank" rel="noopener noreferrer">
+    <!-- 4. Website -->
+    <a class="tile t4" href="https://montsenu.com" target="_blank" rel="noopener noreferrer">
       <img src="img/website.png" alt="Website">
       <span class="caption">(website)</span>
     </a>
-    <!-- 4. Instagram -->
-    <a class="tile t4" href="https://www.instagram.com/montsenu.kr/" target="_blank" rel="noopener noreferrer">
+    <!-- 5. Instagram -->
+    <a class="tile t5" href="https://www.instagram.com/montsenu.kr/" target="_blank" rel="noopener noreferrer">
       <img src="img/instagram.png" alt="Instagram">
       <span class="caption">(instagram)</span>
     </a>
@@ -75,6 +80,26 @@ Original landing content commented out by request
 </footer>
 
 <!-- shader removed -->
+<script>
+  // Mobile-only: simulate hover on scroll by toggling a class
+  (function() {
+    const isMobileLike = window.matchMedia && window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    if (!isMobileLike) return;
 
+    function updateScrolledClass() {
+      if (window.scrollY > 10) {
+        document.body.classList.add('scrolled');
+      } else {
+        document.body.classList.remove('scrolled');
+      }
+    }
+
+    // Initialize and bind
+    window.addEventListener('scroll', updateScrolledClass, { passive: true });
+    window.addEventListener('orientationchange', updateScrolledClass, { passive: true });
+    window.addEventListener('load', updateScrolledClass);
+    document.addEventListener('DOMContentLoaded', updateScrolledClass);
+  })();
+</script>
 </body>
 </html>
