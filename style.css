@@ -305,16 +305,16 @@ iframe {
   box-shadow: 0 28px 60px rgba(0,0,0,0.55), 0 4px 16px rgba(0,0,0,0.4);
 }
 
-.tile:hover img { filter: grayscale(0%) contrast(1.08) brightness(1.12); }
+.tile:hover img { filter: grayscale(0%) contrast(1.1) brightness(1.2) saturate(150%); }
 
-/* Mobile scroll-triggered hover substitute */
+/* Mobile: trigger hover effect per-tile when in view */
 @media (hover: none) and (pointer: coarse) {
-  body.scrolled .tile {
+  .tile.inview {
     transform: rotate(var(--rot)) translateY(-4px) scale(1.02);
     box-shadow: 0 28px 60px rgba(0,0,0,0.55), 0 4px 16px rgba(0,0,0,0.4);
   }
-  body.scrolled .tile img {
-    filter: grayscale(0%) contrast(1.1) brightness(0.95);
+  .tile.inview img {
+    filter: grayscale(0%) contrast(1.1) brightness(1.2) saturate(150%);
   }
 }
 

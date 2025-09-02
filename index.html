@@ -5,7 +5,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&family=Montserrat&family=Pixelify+Sans:wght@400;500;600;700&family=Tilt+Neon&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css?v=13">
+    <link rel="stylesheet" type="text/css" href="style.css?v=14">
     <title>MONTSENU 2025</title>
     <style></style>
 </head>
@@ -81,25 +81,55 @@ Original landing content commented out by request
 
 <!-- shader removed -->
 <script>
-  // Mobile-only: simulate hover on scroll by toggling a class
+  // Mobile-only: trigger effect only for the tile centered in the viewport
   (function() {
     const isMobileLike = window.matchMedia && window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (!isMobileLike) return;
 
-    function updateScrolledClass() {
-      if (window.scrollY > 10) {
-        document.body.classList.add('scrolled');
-      } else {
-        document.body.classList.remove('scrolled');
+    function updateCenterTile() {
+      const tiles = document.querySelectorAll('.tile');
+      if (!tiles.length) return;
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const centerY = vh / 2;
+      const scrolled = window.scrollY || document.documentElement.scrollTop || 0;
+
+      // Keep all tiles inactive until the user scrolls down
+      if (scrolled < 1) {
+        tiles.forEach(t => t.classList.remove('inview'));
+        return;
       }
+
+      let chosen = null;
+      let bestDist = Infinity;
+
+      tiles.forEach((tile) => {
+        const rect = tile.getBoundingClientRect();
+        // Only consider tiles that are at least partially visible
+        if (rect.bottom <= 0 || rect.top >= vh) return;
+        const containsCenter = rect.top <= centerY && rect.bottom >= centerY;
+        if (!containsCenter) return;
+        const tileCenter = rect.top + rect.height / 2;
+        const dist = Math.abs(tileCenter - centerY);
+        if (dist < bestDist) {
+          bestDist = dist;
+          chosen = tile;
+        }
+      });
+
+      // Apply class only to the centered tile
+      tiles.forEach(t => t.classList.remove('inview'));
+      if (chosen) chosen.classList.add('inview');
     }
 
-    // Initialize and bind
-    window.addEventListener('scroll', updateScrolledClass, { passive: true });
-    window.addEventListener('orientationchange', updateScrolledClass, { passive: true });
-    window.addEventListener('load', updateScrolledClass);
-    document.addEventListener('DOMContentLoaded', updateScrolledClass);
+    const opts = { passive: true };
+    ['scroll', 'resize', 'orientationchange'].forEach(evt => window.addEventListener(evt, updateCenterTile, opts));
+    window.addEventListener('load', updateCenterTile, opts);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', updateCenterTile, { once: true });
+    } else {
+      updateCenterTile();
+    }
   })();
-</script>
+  </script>
 </body>
 </html>
