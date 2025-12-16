@@ -333,13 +333,30 @@ iframe {
 .t1 { --rot: -7deg; }
 .t2 { --rot: 8deg; }
 .t3 { --rot: -9deg; }
-.t4 { --rot: 4deg; }
-.t5 { --rot: -5deg; }
+.t4 { --rot: -9deg; }
+.t5 { --rot: 4deg; }
 
 /* Desktop (≥1025px): force max 3 per row by capping container */
 @media (min-width: 1025px) {
   .tile { flex: 1 1 calc((100% - 2 * var(--g)) / 3 - 2px); max-width: 360px; }
   .tiles { max-width: calc(3 * 360px + 2 * var(--g) - 2px); }
+}
+
+/* 2x2 layout for exactly four tiles on tablet/desktop; keep mobile flex stack */
+@media (min-width: 801px) {
+  .tiles.tiles--four {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    grid-auto-rows: 1fr;
+    justify-items: center;
+    max-width: calc(2 * 360px + var(--g));
+    margin-inline: auto;
+  }
+  .tiles.tiles--four .tile {
+    width: 100%;
+    max-width: 360px;
+    flex: none;
+  }
 }
 
 
