@@ -333,8 +333,9 @@ iframe {
 .t1 { --rot: -7deg; }
 .t2 { --rot: 8deg; }
 .t3 { --rot: -9deg; }
-.t4 { --rot: -9deg; }
-.t5 { --rot: 4deg; }
+.t4 { --rot: 9deg; }
+.t5 { --rot: -4deg; }
+.t6 { --rot: 6deg; }
 
 /* Desktop (≥1025px): force max 3 per row by capping container */
 @media (min-width: 1025px) {
