@@ -59,6 +59,14 @@ body {
   height: auto; /* Maintains the aspect ratio */
   margin-bottom: 3px;
 }
+
+/* Desktop: shrink inline-image pages a bit while keeping mobile sizes */
+@media (min-width: 1025px) {
+  .sfw img {
+    width: 70vw;
+    max-width: 1100px;
+  }
+}
  
   
 html{
@@ -840,4 +848,55 @@ svg {
   height: 100vh;
   z-index: -1; /* keep it behind */
   display: block;
+}
+
+
+
+.linesheet-link {
+    display: flex;
+    justify-content: center;
+}
+
+.linesheet-img-wrap {
+    position: relative;
+    width: min(80vw, 960px);
+}
+
+.linesheet-img-wrap img {
+    width: 100%;
+    display: block;
+    filter: drop-shadow(0 0 12px rgba(0,0,0,0.22));
+}
+
+.linesheet-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    color: #0e0e0e;
+    background: rgba(0,0,0,0.25);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.linesheet-link:hover .linesheet-overlay {
+    opacity: 1;
+}
+
+
+/* Desktop hover behaviour (keeps your current feel) */
+.linesheet-overlay { opacity: 0; }
+.linesheet-link:hover .linesheet-overlay { opacity: 1; }
+
+/* Mobile: always show overlay */
+@media (max-width: 768px) {
+  .linesheet-overlay {
+    opacity: 1;
+    background: rgba(0,0,0,0.35);
+    font-size: 13px;
+  }
 }
